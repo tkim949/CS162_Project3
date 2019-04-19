@@ -10,25 +10,27 @@
 
 #ifndef PROJECT3_HARRYP_H
 #define PROJECT3_HARRYP_H
-#include "Chara.h"
+#include "Character.h"
+#include <iostream>
+
 
 
 class HarryP:
-        public Chara
+        public Character
 
 {
 private:
-      int newLife = 20;
+      int newLife =20;
 
 public:
 
     HarryP();
     ~ HarryP() override;
-    HarryP(int s, int a, int nLife);
-    int getNewLife();
+    //HarryP(std::string n, int s, int a, int nLife);
+    int getNewLife() const;
     void setNewLife(int nLife);
     int Attack() override;
-    int Defense() override;
+    void Defense(int at) override;
 };
 
 

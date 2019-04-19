@@ -9,31 +9,70 @@
  ******************************************************************************************************/
 
 #include "BlueMen.h"
+#include <iostream>
 
 
-BlueMen::BlueMen() = default;
-BlueMen::~BlueMen() = default ;
-BlueMen::BlueMen(int s, int a, int numDie)
-        :Chara(s, a)
+BlueMen::BlueMen() //= default;
+        :Character("Blue men", 12, 3)
 {
-    this ->numDie =numDie;
 }
-int BlueMen::getNumDie(){
-    return this->numDie;
-}
-void BlueMen::setNumDie(int die){
+BlueMen::~BlueMen() = default ;
 
-    numDie = die;
-
-}
 
 int BlueMen::Attack() {
 
-    return Chara::Dice(2, 10);
+    int roll = Character::Dice(2, 10);
+
+    std::cout << "Attacker: "<<getName()<<" Attacker's roll: "<<roll<<std::endl;
+
+    return roll;
 
 }
-int BlueMen::Defense() {
+void BlueMen::Defense(int at) {
 
-    return Chara::Dice(3, 6);
+    int numOfDef;
+    int damage;
+
+    if (strength > 8){
+
+        std::cout<< "Defender Blue men has 3 dices."<<std::endl;
+        numOfDef = Character::Dice(3, 6);
+    }
+
+    else if ((strength <= 8) && (strength > 4)) {
+
+        std::cout << "Defender Blue men has 2 dices now." << std::endl;
+        numOfDef = Character::Dice(2, 6);
+
+    }
+    else //(strength <=4){
+    {
+        std::cout<< "Defender Blue men 1 dice now."<<std::endl;
+        numOfDef = Character::Dice(1, 6);
+
+    }
+
+    damage = at -(numOfDef + armor);
+
+    std::cout<<"Defender: "<<name;
+    std::cout<<"  Defender's roll: "<<numOfDef<<std::endl;
+    std::cout<<"Defender's Armor: "<<armor<<"  Strength: "<<getStrength()<<std::endl;
+
+    if(damage >= getStrength()) {
+
+        std::cout << "Total inflicted Damage: " << getStrength() << std::endl;
+        setStrength(0);
+
+    }
+    else if (damage > 0 && damage < getStrength()) {
+
+        std::cout << "Total inflicted Damage: " << damage << std::endl;
+        setStrength(strength - damage);
+    }
+    else if(damage <= 0)
+    {
+        std::cout << "Total inflicted Damage: " << 0 << std::endl;
+
+    }
 
 }

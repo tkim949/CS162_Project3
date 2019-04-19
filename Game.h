@@ -10,19 +10,29 @@
 
 #ifndef PROJECT3_GAME_H
 #define PROJECT3_GAME_H
+//#include "Chara.h"
+#include "Character.h"
+#include "HarryP.h"
+#include "Barbarian.h"
+#include "BlueMen.h"
+#include "Medusa.h"
+#include "Vampire.h"
 
 
 class Game {
 
 
 private:
+    Character* player1;
+    Character* player2;
+    Character* temp;
 
 protected:
 
 public:
     Game();
    ~Game();
-   int isStrength(int a);
+
    void play();
 
 };

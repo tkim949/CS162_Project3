@@ -12,34 +12,70 @@
 #include "Vampire.h"
 #include <iostream>
 #include <random>
+#include "Dice.h"
 
-Vampire::Vampire()= default;
-Vampire::~Vampire()= default;
-
-Vampire::Vampire(int s, int a)
-        :Chara(s, a)
+Vampire::Vampire()  //= default;
+        :Character("Vampire", 18, 1)
 {
 
 }
 
+Vampire::~Vampire()= default;
+
 int Vampire::Attack() {
 
-    return Chara::Dice(1, 12);
+    int roll = Character::Dice(1, 12);
+    std::cout << "Attacker: "<<getName()<<" Attacker's roll: "<<roll<<std::endl;
+
+    return roll;
 }
 
-int Vampire::Defense() {
+
+void Vampire::Defense(int at) {
 
     int charm;
+    int numOfDef;
+    numOfDef = Character::Dice(1, 6);
+    int damage;
+    damage = at-(numOfDef + armor);
+
+    std::cout<<"Defender: "<<name;
+    std::cout<<"  Defender's roll: "<<numOfDef<<std::endl;
+    std::cout<<"Defender's Armor: "<<armor<<"  Strength: "<<getStrength()<<std::endl;
+
     std::random_device ran1;
     std::mt19937 mt1(ran1());
     std::uniform_int_distribution<int> dist(0, 1);
     charm = dist(mt1);
 
-    if(charm ==0){
-        return 1000;
+    if(charm == 0){
+
+        std::cout << "Vampire activates her Charm, so the attack";
+        std::cout<<" didn't reach her at all."<<std::endl;
+        std::cout<< "Total inflicted Damage: "<< 0 <<std::endl;
+
+    }
+    else { //charm == 1
+
+        if(damage >= getStrength()) {
+
+            std::cout << "Total inflicted Damage: " << getStrength() << std::endl;
+            setStrength(0);
+
+        }
+        else if (damage > 0 && damage < getStrength()) {
+
+            std::cout << "Total inflicted Damage: " << damage << std::endl;
+            setStrength(strength - damage);
+        }
+        else if(damage <= 0)
+        {
+            std::cout << "Total inflicted Damage: " << 0 << std::endl;
+
+        }
     }
 
-    else {
-        return Chara::Dice(1, 6);
-    }
+
 }
+
+

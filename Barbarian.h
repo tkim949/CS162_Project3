@@ -10,11 +10,13 @@
 
 #ifndef PROJECT3_BARBARIAN_H
 #define PROJECT3_BARBARIAN_H
-#include "Chara.h"
+#include "Character.h"
+#include <string>
+#include <iostream>
 
 
 class Barbarian:
-        public Chara
+        public Character
 {
 
 private:
@@ -23,9 +25,8 @@ public:
 
     Barbarian();
     ~Barbarian() override;
-    Barbarian(int s, int a);
     int Attack() override;
-    int Defense() override;
+    void Defense(int at) override;
 };
 
 

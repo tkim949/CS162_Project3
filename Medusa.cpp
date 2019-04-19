@@ -9,29 +9,63 @@
  ******************************************************************************************************/
 
 #include "Medusa.h"
+#include <iostream>
 
-Medusa::Medusa() = default;
-Medusa::~ Medusa() = default;
-Medusa::Medusa(int s, int a)
-       :Chara(s, a)
+
+Medusa::Medusa() //= default;
+       :Character("Medusa", 8, 3)
 {
 }
+Medusa::~ Medusa() = default;
 
 
 int Medusa::Attack() {
 
-    int roll12 = Chara::Dice(2, 6);
+
+    int roll12 = Character::Dice(2, 6);
+
+    std::cout << "Attacker: "<<getName()<<" Attacker's roll: "<<roll12<<std::endl;
 
     if(roll12 == 12){
-        return 1000;
+
+        std::cout <<"Medusa use her Glare, so defender will become a stone"<<std::endl;
+        return 999;
+
     }
+
     else {
-        return Chara::Dice(2, 6);
+
+        return roll12;
     }
 
 }
-int Medusa::Defense() {
+void Medusa::Defense(int at) {
 
-    return Chara::Dice(1, 6);
+    int numOfDef = Character::Dice(1, 6);
+    int damage;
+    damage = at -(numOfDef + armor);
+
+    std::cout<<"Defender: "<<name;
+    std::cout<<"  Defender's roll: "<<numOfDef<<std::endl;
+    std::cout<<"Defender's Armor: "<<armor<<"  Strength: "<<getStrength()<<std::endl;
+
+
+    if(damage >= getStrength()) {
+
+        std::cout << "Total inflicted Damage: " << getStrength() << std::endl;
+        setStrength(0);
+
+    }
+    else if (damage > 0 && damage < getStrength()) {
+
+        std::cout << "Total inflicted Damage: " << damage << std::endl;
+        setStrength(strength - damage);
+    }
+    else if(damage <= 0)
+    {
+        std::cout << "Total inflicted Damage: " << 0 << std::endl;
+
+    }
+
 
 }

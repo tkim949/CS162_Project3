@@ -11,11 +11,12 @@
 
 #ifndef PROJECT3_VAMPIRE_H
 #define PROJECT3_VAMPIRE_H
-#include "Chara.h"
+#include "Character.h"
+#include <iostream>
 
 
 class Vampire:
-        public Chara
+        public Character
 {
 
 private:
@@ -25,10 +26,9 @@ public:
 
     Vampire();
     ~Vampire() override;
-    Vampire(int s, int a);
-
     int Attack() override;
-    int Defense() override;
+    void Defense(int at) override;
+
 };
 
 

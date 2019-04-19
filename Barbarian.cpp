@@ -9,20 +9,49 @@
  ******************************************************************************************************/
 
 #include "Barbarian.h"
+#include <iostream>
 
-Barbarian::Barbarian() =default;
-Barbarian::~Barbarian()= default;
-Barbarian::Barbarian(int s, int a)
-          :Chara(s, a)
+Barbarian::Barbarian() //=default;
+         :Character("Barbarian", 12, 0)
 {
 
 }
+Barbarian::~Barbarian()= default;
+
+
 int Barbarian::Attack() {
 
-    return Chara::Dice(2, 6);
+    int roll = Character::Dice(2, 6);
+    std::cout << "Attacker: "<<getName()<<" Attacker's roll: "<<roll<<std::endl;
+
+    return roll;
 
 }
-int Barbarian::Defense() {
+void Barbarian::Defense(int at) {
 
-    return Chara::Dice(2, 6);
+    int numOfDef = Character::Dice(2, 6);
+    int damage;
+    damage = at -(numOfDef + armor);
+
+    std::cout<<"Defender: "<<name;
+    std::cout<<"  Defender's roll: "<<numOfDef<<std::endl;
+    std::cout<<"Defender's Armor: "<<armor<<"  Strength: "<<getStrength()<<std::endl;
+
+    if(damage >= getStrength()) {
+
+        std::cout << "Total inflicted Damage: " << getStrength() << std::endl;
+        setStrength(0);
+
+    }
+    else if (damage > 0 && damage < getStrength()) {
+
+        std::cout << "Total inflicted Damage: " << damage << std::endl;
+        setStrength(strength - damage);
+    }
+    else if(damage <= 0)
+    {
+        std::cout << "Total inflicted Damage: " << 0 << std::endl;
+
+    }
+
 }

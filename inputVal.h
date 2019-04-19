@@ -11,9 +11,6 @@
 #include <string>
 
 int inputVal(double in);
-int isStrength(int a);
-double rangeForStudent(double s);
-double rangeForInstructor(double in);
-std::string getLetters(std::string str);
+
 
 #endif //PROJECT2_INPUTVAL_H

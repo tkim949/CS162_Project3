@@ -10,10 +10,12 @@
 
 #ifndef PROJECT3_MEDUSA_H
 #define PROJECT3_MEDUSA_H
-#include "Chara.h"
+#include "Character.h"
+#include <iostream>
+
 
 class Medusa:
-        public Chara
+        public Character
 {
 
 private:
@@ -23,9 +25,8 @@ public:
 
     Medusa();
     ~ Medusa() override;
-    Medusa(int s, int a);
     int Attack() override;
-    int Defense() override;
+    void Defense(int at) override;
 
 };
 

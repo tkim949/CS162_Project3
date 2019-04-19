@@ -10,27 +10,23 @@
 
 #ifndef PROJECT3_BLUEMEN_H
 #define PROJECT3_BLUEMEN_H
-
-
-#include "Chara.h"
+#include "Character.h"
+#include <iostream>
 
 class BlueMen:
-        public Chara
+        public Character
 {
 
 private:
-    int numDie;
+
 
 
 public:
 
     BlueMen();
     ~BlueMen() override;
-    BlueMen(int s, int a, int die);
-    int getNumDie();
-    void setNumDie(int die);
     int Attack() override;
-    int Defense() override;
+    void Defense(int at) override;
 
 };
 
